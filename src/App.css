@@ -1,0 +1,11 @@
+.border-canvas {
+max-width: 600px;
+    padding: 20px;
+}
+
+.container-canvas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
