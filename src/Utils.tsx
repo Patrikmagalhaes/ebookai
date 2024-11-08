@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // canvasUtils.ts
 import { Rect, Circle } from 'fabric';
 
