@@ -1,3 +1,5 @@
+import IconPAge from "./assets/icons/page.png"
+import './AddCanvas.css'
 interface AddCanvasProps {
     canvases: number[];
     setCanvases: React.Dispatch<React.SetStateAction<number[]>>;
@@ -14,7 +16,7 @@ const AddCanvas: React.FC<AddCanvasProps> = ({ canvases, setCanvases, setCanvasI
     };
 
     return (
-        <button onClick={addNewCanvas}>Novo</button>
+        <button className="add-page" onClick={addNewCanvas}><span>Adicionar pagina</span> <img src={IconPAge} /></button>
     );
 };
 

@@ -11,6 +11,9 @@ import Settings from "./Toolbar";
 import CircleSettings from "./CircleSettings";
 import AddTextButton from "./TextComponent";
 import TextEditorToolbar from "./TextEditorToolbar";
+import Square from "./shapes/Square";
+import DeleteButton from "./DeleteElement";
+import AddImageButton from "./AddImage";
 
 function App() {
   const canvasContainerRef = useRef(null);
@@ -57,64 +60,113 @@ function App() {
         </div>
         <div className="container">
           <div className="sidebar-left">
-            <div>
+            <div className="add-delete">
               <AddCanvas
                 setCanvases={setCanvases}
                 canvases={canvases}
                 setCanvasInstances={setCanvasInstances}
                 setActiveCanvasId={setActiveCanvasId}
               />
-              <CircleComponent
-                activeCanvasId={activeCanvasId}
-                canvasInstances={canvasInstances}
-                options={{ top: 100, left: 100, radius: 50, fill: "#42D84D" }}
-              />
-              <Rectangle
-                activeCanvasId={activeCanvasId}
-                canvasInstances={canvasInstances}
-                options={{
-                  top: 50,
-                  left: 50,
-                  width: 100,
-                  height: 100,
-                  fill: "#D84D42",
-                }}
-              />
+
+              {activeCanvasId !== null && (
+                <DeleteButton
+                  canvasInstance={canvasInstances[activeCanvasId]}
+                  activeObject={activeObject}
+                  setActiveObject={setActiveObject}
+                />
+              )}
             </div>
+            <div className="shapes">
+              <span>Formas</span>
+              <div className="shapes-content">
+                <CircleComponent
+                  activeCanvasId={activeCanvasId}
+                  canvasInstances={canvasInstances}
+                  options={{ top: 100, left: 100, radius: 50, fill: "#007AFF" }}
+                />
+                <Rectangle
+                  activeCanvasId={activeCanvasId}
+                  canvasInstances={canvasInstances}
+                  options={{
+                    top: 50,
+                    left: 50,
+                    width: 150,
+                    height: 100
+                  }}
+
+                />
+                <Square activeCanvasId={activeCanvasId}
+                  canvasInstances={canvasInstances}
+                  options={{
+                    top: 50,
+                    left: 50,
+                    width: 100,
+                    height: 100,
+                    fill: "#FF3B30",
+                  }} />
+              </div>
+            </div>
+            <div>
+              {/* Componente de configurações para objetos ativos */}
+              {activeObject &&
+                (activeObject.type === "circle" ? (
+                  <CircleSettings
+                    activeObject={activeObject}
+                    setActiveObject={setActiveObject}
+                    canvas={canvasInstances[activeCanvasId as number]}
+                  />
+                ) : (
+                  <Settings
+                    activeObject={activeObject}
+                    setActiveObject={setActiveObject}
+                    canvas={canvasInstances[activeCanvasId as number]}
+                  />
+                ))}
+            </div>
+            <AddImageButton
+              activeCanvasId={activeCanvasId} // Passando activeCanvasId
+              canvasInstances={canvasInstances}
+            />
           </div>
 
           <div className="container-canvas" ref={canvasContainerRef}>
             {canvases.map((canvasId) => (
-              <div
-                className="border-canvas"
-                key={canvasId}
-                onClick={() => setActiveCanvasId(canvasId)}
-                style={{
-                  cursor: "pointer",
-                  borderBottom:
-                    activeCanvasId === canvasId ? "1px solid red" : "none",
-                  borderLeft:
-                    activeCanvasId === canvasId ? "1px solid red" : "none",
-                }}
-              >
-                <canvas id={`canvas-${canvasId}`}></canvas>
-                <MoveCanvas
-                  canvasId={canvasId}
-                  canvases={canvases}
-                  setCanvases={setCanvases}
-                />
-                <DeleteCanvas
-                  canvasId={canvasId}
-                  canvases={canvases}
-                  setCanvases={setCanvases}
-                  canvasInstances={canvasInstances}
-                  setCanvasInstances={setCanvasInstances}
-                />
-              </div>
+              <>
+                <div
+                  className="border-canvas"
+                  key={canvasId}
+                  onClick={() => setActiveCanvasId(canvasId)}
+                  style={{
+                    cursor: "pointer",
+                    boxShadow: activeCanvasId === canvasId ? "1px -1px 27px 16px rgba(88,74,143,0.78)" : "none",
+                    WebkitBoxShadow: activeCanvasId === canvasId ? "1px -1px 27px 16px rgba(88,74,143,0.78)" : "none",
+                    margin: "0px", padding: "0px"
+                  }}
+                >
+
+                  <canvas id={`canvas-${canvasId}`}></canvas>
+
+                </div>
+                <div className="canvas-settings">
+                  <MoveCanvas
+                    canvasId={canvasId}
+                    canvases={canvases}
+                    setCanvases={setCanvases}
+                  />
+                  <DeleteCanvas
+                    canvasId={canvasId}
+                    canvases={canvases}
+                    setCanvases={setCanvases}
+                    canvasInstances={canvasInstances}
+                    setCanvasInstances={setCanvasInstances}
+                  />
+                </div>
+              </>
             ))}
           </div>
 
           <div className="sidebar-right">
+            <span>Texto</span>
             <AddTextButton
               activeCanvasId={activeCanvasId}
               canvasInstances={canvasInstances}
@@ -123,23 +175,11 @@ function App() {
               activeObject={activeObject}
               canvas={canvasInstances[activeCanvasId as number]}
             />
+
+
           </div>
         </div>
-        {/* Componente de configurações para objetos ativos */}
-        {activeObject &&
-          (activeObject.type === "circle" ? (
-            <CircleSettings
-              activeObject={activeObject}
-              setActiveObject={setActiveObject}
-              canvas={canvasInstances[activeCanvasId as number]}
-            />
-          ) : (
-            <Settings
-              activeObject={activeObject}
-              setActiveObject={setActiveObject}
-              canvas={canvasInstances[activeCanvasId as number]}
-            />
-          ))}
+
       </div>
     </>
   );

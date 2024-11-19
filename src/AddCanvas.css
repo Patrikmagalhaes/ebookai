@@ -1,0 +1,9 @@
+.add-page {
+    display: flex;
+    align-items: center;
+    background-color: #7F56D9;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    color: #ffffff;
+}

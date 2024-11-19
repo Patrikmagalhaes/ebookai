@@ -1,6 +1,7 @@
 import { Rect } from 'fabric';
-import IconRec from ".././assets/icons/rectangle.png"
+import IconSquare from ".././assets/icons/square.png"
 import './Shapes.css'
+
 interface RectangleProps {
     activeCanvasId: number | null;
     canvasInstances: any[];
@@ -13,9 +14,9 @@ interface RectangleProps {
     };
 }
 
-const Rectangle: React.FC<RectangleProps> = ({ activeCanvasId, canvasInstances, options }) => {
+const Square: React.FC<RectangleProps> = ({ activeCanvasId, canvasInstances, options }) => {
 
-    const addRectangle = () => {
+    const addSquare = () => {
         if (activeCanvasId !== null && canvasInstances[activeCanvasId]) {
             const canvas = canvasInstances[activeCanvasId];
             const rect = new Rect({
@@ -23,7 +24,7 @@ const Rectangle: React.FC<RectangleProps> = ({ activeCanvasId, canvasInstances, 
                 left: options.left || 50,
                 width: options.width || 100,
                 height: options.height || 100,
-                fill: options.fill || "#5856D6",
+                fill: options.fill || "red",
             });
             canvas.add(rect);
             canvas.renderAll();
@@ -32,10 +33,10 @@ const Rectangle: React.FC<RectangleProps> = ({ activeCanvasId, canvasInstances, 
 
     return (
         <>
-            <button className='icon' onClick={addRectangle}><img src={IconRec} alt="" /></button>
+            <button className='icon' onClick={addSquare}><img src={IconSquare} alt="" /></button>
         </>
     )
 };
 
-export default Rectangle;
+export default Square;
 

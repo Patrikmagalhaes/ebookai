@@ -1,5 +1,6 @@
 import { Circle } from 'fabric';
-
+import IconCircle from ".././assets/icons/circle.png"
+import './Shapes.css'
 interface CircleProps {
     activeCanvasId: number | null;
     canvasInstances: any[];
@@ -28,7 +29,7 @@ const CircleComponent: React.FC<CircleProps> = ({ activeCanvasId, canvasInstance
 
     return (
         <>
-            <button onClick={addCircle}>Circulo</button>
+            <button className='icon' onClick={addCircle}><img src={IconCircle} alt="" /></button>
         </>
     )
 };

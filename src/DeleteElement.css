@@ -1,0 +1,9 @@
+.delete-element {
+    background-color: red;
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    padding: 6px;
+    border-radius: 6px;
+}

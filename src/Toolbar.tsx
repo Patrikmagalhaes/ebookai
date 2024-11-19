@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Object as FabricObject } from 'fabric/fabric-impl';
-
+import './RectangleSettings.css'
 
 interface SettingsProps {
   activeObject: FabricObject;
@@ -45,21 +45,31 @@ const Settings: React.FC<SettingsProps> = ({ activeObject, setActiveObject, canv
   };
 
   return (
-    <div className="settings">
-      <h3>Settings for Selected Object</h3>
-      <label>
-        Width:
-        <input type="number" value={width} onChange={handleWidthChange} />
-      </label>
-      <label>
-        Height:
-        <input type="number" value={height} onChange={handleHeightChange} />
-      </label>
-      <label>
-        Color:
-        <input type="color" value={color} onChange={handleColorChange} />
-      </label>
-    </div>
+    <>
+      <div className="settings">
+        <h3>Settings for Selected Object</h3>
+        <div className='div-input'>
+          <label>
+            Largura:
+          </label>
+          <input type="number" value={width.toFixed(0)} onChange={handleWidthChange} />
+        </div>
+
+        <div className='div-input'>
+          <label>
+            Altura
+          </label>
+          <input type="number" value={height.toFixed(0)} onChange={handleHeightChange} />
+        </div>
+        <div  className='div-input'>
+          <label>
+            Cor:
+
+          </label>
+          <input type="color" value={color} onChange={handleColorChange} />
+        </div>
+      </div>
+    </>
   );
 };
 

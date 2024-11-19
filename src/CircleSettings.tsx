@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Object as FabricObject } from "fabric/fabric-impl";
-
+import "./CircleSettings.css"
 interface CircleSettingsProps {
   activeObject: FabricObject;
   setActiveObject: React.Dispatch<React.SetStateAction<FabricObject | null>>;
@@ -41,15 +41,19 @@ const CircleSettings: React.FC<CircleSettingsProps> = ({
 
   return (
     <div className="circle-settings">
-      <h3>Settings for Selected Circle</h3>
-      <label>
-        Diameter:
-        <input type="number" value={diameter} onChange={handleDiameterChange} />
-      </label>
-      <label>
-        Color:
+      <h3>Elemento selecionado</h3>
+      <div className="div-input">
+        <label>
+          Diametro:
+        </label>
+        <input type="number" value={diameter.toFixed(0)} onChange={handleDiameterChange} />
+      </div>
+      <div  className="div-input">
+        <label>
+          Cor:
+        </label>
         <input type="color" value={color} onChange={handleColorChange} />
-      </label>
+      </div>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import IconDelete from "./assets/icons/delete.svg"
 
 interface DeleteCanvasProps {
     canvasId: number;
@@ -39,8 +39,8 @@ const DeleteCanvas: React.FC<DeleteCanvasProps> = ({
     };
 
     return (
-        <button onClick={handleDelete} style={{ marginLeft: '10px' }}>
-            Delete Canvas
+        <button className="delete-canvas" onClick={handleDelete}>
+       <img src={IconDelete} alt="" />
         </button>
     );
 };

@@ -1,6 +1,7 @@
 // MoveCanvas.tsx
-import React from 'react';
-
+import IconUp from "./assets/icons/up.png"
+import IconDown from "./assets/icons/down.png"
+import './index.css'
 interface MoveCanvasProps {
     canvasId: number;
     canvases: number[];
@@ -33,9 +34,9 @@ const MoveCanvas: React.FC<MoveCanvasProps> = ({ canvasId, canvases, setCanvases
     };
 
     return (
-        <div>
-            <button onClick={moveCanvasUp} disabled={canvases.indexOf(canvasId) === 0}>↑</button>
-            <button onClick={moveCanvasDown} disabled={canvases.indexOf(canvasId) === canvases.length - 1}>↓</button>
+        <div className="move-canvas">
+            <button onClick={moveCanvasUp} disabled={canvases.indexOf(canvasId) === 0}> <img src={IconUp} /></button>
+            <button onClick={moveCanvasDown} disabled={canvases.indexOf(canvasId) === canvases.length - 1}> <img src={IconDown} /> </button>
         </div>
     );
 };

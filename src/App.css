@@ -12,9 +12,47 @@
 
 .container {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
 }
-.sidebar-right{
-    display: flex;
-    flex-direction: column;
+
+.sidebar-right,
+.sidebar-left {
+  display: flex;
+  flex-direction: column;
+  background-color: #F9FAFB;
+  position: fixed;
+  height: 100%;
+  padding: 26px;
+  top: 60px;
+
+}
+
+.sidebar-right {
+  right: 0;
+}
+
+.sidebar-left {
+  left: 0;
+}
+
+.shapes {
+  display: flex;
+  flex-direction: column;
+}
+
+.canvas-settings {
+  display: flex;
+  margin-top: 16px;
+  gap: 10px;
+  background-color: transparent;
+}
+
+canvas:hover {
+  box-shadow: 1px -1px 27px 16px rgba(88, 74, 143, 0.78);
+  -webkit-box-shadow: 1px -1px 27px 16px rgba(88, 74, 143, 0.78);
+  -moz-box-shadow: 1px -1px 27px 16px rgba(88, 74, 143, 0.78);
+  ;
+}
+
+.add-delete button{
+  margin-bottom: 6px;
 }

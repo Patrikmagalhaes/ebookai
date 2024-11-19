@@ -43,7 +43,7 @@ const AddTextButton: React.FC<AddTextButtonProps> = ({
   };
 
   return (
-    <div style={{ margin: "10px" }}>
+    <div className="add-text" style={{ margin: "10px" }}>
       <select
         value={textStyle}
         onChange={(e) => setTextStyle(e.target.value as "h1" | "h2" | "h3" | "p")}
